@@ -18,7 +18,7 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("https://localhost:7003/api/Register", userData)
+      .post("https://cundicode-identity-server.azurewebsites.net/api/Register", userData)
       .then((response) => {
         console.log(response);
         alert("¡Registro exitoso!");

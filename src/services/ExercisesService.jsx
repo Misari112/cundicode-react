@@ -6,7 +6,7 @@ export function GetExercises() {
 
   useEffect(() => {
     const fetchExercises = async () => {
-      const response = await axios.get('https://localhost:7253/api/Codes');
+      const response = await axios.get('https://cundicode-ms-practice-api.azurewebsites.net/api/Codes');
       setExercises(response.data);
     };
     fetchExercises();
@@ -20,7 +20,7 @@ export function GetExercise(id) {
 
   useEffect(() => {
     const fetchExercise = async () => {
-      const response = await axios.get('https://localhost:7253/api/Codes/' + id);
+      const response = await axios.get('https://cundicode-ms-practice-api.azurewebsites.net/api/Codes/' + id);
       const object = response.data;
       const examples = JSON.parse(object.Examples);
       object.Examples = examples;
@@ -33,7 +33,13 @@ export function GetExercise(id) {
 }
 
 export function SetNewExercise(newExercise) {
-  axios.post("https://localhost:7253/api/Codes/add", newExercise)
+  console.log("newExercise");
+  console.log(newExercise);
+  axios.post("https://cundicode-ms-practice-api.azurewebsites.net/api/Codes/add", newExercise, {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
     .then((response) => {
       console.log(response);
       alert("Agregado exitosamente!");
@@ -46,6 +52,7 @@ export function SetNewExercise(newExercise) {
     });
 }
 
+
 export async function CompileCustomCode(eCase) {
   const requestBody = {
     script: eCase.script,
@@ -53,7 +60,7 @@ export async function CompileCustomCode(eCase) {
     language: "java",
     version: "4"
   };
-  return await axios.post('https://localhost:7253/api/Codes', requestBody, {
+  return await axios.post('https://cundicode-ms-practice-api.azurewebsites.net/api/Codes', requestBody, {
     headers: {
       'accept': '*/*',
       'Content-Type': 'application/json'
@@ -77,7 +84,7 @@ export async function CompileExamples(eCase) {
     language: "java",
     version: "4"
   };
-  return await axios.post('https://localhost:7253/api/Codes/ExecuteExamples', requestBody, {
+  return await axios.post('https://cundicode-ms-practice-api.azurewebsites.net/api/Codes/ExecuteExamples', requestBody, {
     headers: {
       'accept': '*/*',
       'Content-Type': 'application/json'
