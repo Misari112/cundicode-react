@@ -14,7 +14,6 @@ function App() {
                     <thead>
                         <tr>
                             <th>Title</th>
-                            <th>Description</th>
                             <th>Difficulty Level</th>
                             <th>Categories</th>
                             <th>Last Update</th>
@@ -25,7 +24,6 @@ function App() {
                         {exercises.map((item) => (
                             <tr key={item.Id}>
                                 <td>{item.Title}</td>
-                                <td>{item.Description}</td>
                                 <td>{item.DifficultyLevel}</td>
                                 <td>{item.Categories}</td>
                                 <td>{item.LastUpdated}</td>
