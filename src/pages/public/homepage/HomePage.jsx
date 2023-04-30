@@ -17,8 +17,6 @@ const HomePage = () => {
   return (
     <div className='homepage'>
       <Navigator />
-      {user ? (<>{user.access_token}</>):(<></>)}
-      <pre>{JSON.stringify(user, null, 2)}</pre>
     </div>
   );
 };
