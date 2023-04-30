@@ -97,10 +97,10 @@ img {
 /** Header **/
 /**Tato Maltrato, acá quite las imagenes porque no cargan en react, lo cambie por un simple color
 
-.webp .header{
+.header{
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./img/BannerProgramacion.webp');  
   }
-.no-webp .header{
+.header{
 
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./img/BannerProgramacion.png');  
 }

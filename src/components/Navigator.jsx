@@ -2,6 +2,7 @@ import { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 //import '../../../styles/style.css';
 import { getAuthenticatedUser } from '../config/ConfigIdentity';
+import LoginButton from "../pages/public/auth/Login";
 
 function Navigator() {
     const [user, setUser] = useState('');
@@ -40,9 +41,6 @@ function Navigator() {
                                     </a>
                                     <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <li>
-                                            <Link className="dropdown-item" to="/NewExercise">New Exercise</Link>
-                                        </li>
-                                        <li>
                                             <Link className="dropdown-item" to="/">Contacto</Link>
                                         </li>
                                         <li><a className="dropdown-item" href="#">Another action</a></li>
@@ -79,7 +77,7 @@ function Navigator() {
                                 <Fragment>
                                     <ul className="navbar-nav">
                                         <li className="nav-item">
-                                            <Link className="nav-link active" to="/login">Login</Link>
+                                            <LoginButton/>
                                         </li>
                                         <li className="nav-item">
                                             <Link className="nav-link active" to="/signup">SignUp</Link>

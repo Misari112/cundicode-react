@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 //import '../../../styles/style.css';
 import { getAuthenticatedUser } from '../../../config/ConfigIdentity';
-import Header from './Header';
 import Navigator from '../../../components/Navigator';
 
 const HomePage = () => {
@@ -18,6 +17,8 @@ const HomePage = () => {
   return (
     <div className='homepage'>
       <Navigator />
+      {user ? (<>{user.access_token}</>):(<></>)}
+      <pre>{JSON.stringify(user, null, 2)}</pre>
     </div>
   );
 };
