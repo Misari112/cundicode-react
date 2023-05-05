@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { GetExercises } from '../../../services/ExercisesService';
 import Navigator from '../../../components/Navigator';
 
-function App() {
+function ExercisesPage() {
     const exercises = GetExercises();
     return (
         <Fragment>
@@ -37,4 +37,4 @@ function App() {
     );
 }
 
-export default App;
+export default ExercisesPage;

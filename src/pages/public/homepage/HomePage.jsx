@@ -1,24 +1,14 @@
-import React, { useState, useEffect } from 'react';
-//import '../../../styles/style.css';
-import { getAuthenticatedUser } from '../../../config/ConfigIdentity';
-import Navigator from '../../../components/Navigator';
+import React, { Fragment } from 'react';
+import Header from './Header';
 
-const HomePage = () => {
-  const [user, setUser] = useState(null);
-  
-  useEffect(() => {
-    async function getUser() {
-      const user = await getAuthenticatedUser();
-      setUser(user);
-    }
-    getUser();
-  }, []);
+function HomePage() {
 
   return (
-    <div className='homepage'>
-      <Navigator />
-    </div>
+    <Fragment>
+      <Header />
+    </Fragment>
   );
-};
+
+}
 
 export default HomePage;

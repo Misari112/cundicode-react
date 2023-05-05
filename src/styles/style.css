@@ -14,7 +14,6 @@ html {
   font-size: 62.5%; /*1 rem = 10px*/
   width: 100%;
   height: 100%;
-  
 }
 *,
 *:before,
@@ -28,21 +27,10 @@ body {
 }
 /** Globales **/
 
-.homepage {
-  background-color: white;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-}
-
-.App{
-  background-color: gray;
-}
-
 .contenedor {
-  width: 100%;
+  max-width: 120rem;
+  width: 90%;
   margin: 0 auto;
-  background-color: gray;
 }
 a {
   text-decoration: none;
@@ -95,23 +83,16 @@ img {
 }
 
 /** Header **/
-/**Tato Maltrato, acá quite las imagenes porque no cargan en react, lo cambie por un simple color
+.header{
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./assets/img/BannerProgramacion.webp');  
+    
+}
 
 .header{
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./img/BannerProgramacion.webp');  
-  }
-.header{
 
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./img/BannerProgramacion.png');  
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./assets/img/BannerProgramacion.png');  
 }
 
-**/
-.webp .header{
-  background-color: gray;
-}
-.no-webp .header{
-  background-color: gray;
-}
 
 .header {
   padding-top: 3rem;
@@ -133,28 +114,13 @@ img {
    } 
 }
 
-.user__profile{
-  color: #0d2738;
-}
-
 @media (min-width: 768px) {
   .barra {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
   }
 }
-
-.logo__header{
-  padding-left: 2rem;
-}
-
-.compiler_editor{
-  width: 100%;
-  height: 400px;
-}
-
 .logo {
   color: var(--blanco);
   margin: 0;
@@ -164,22 +130,17 @@ img {
 }
 .logo__bold {
   font-weight: bold;
-  color: #09BC8A;
 }
 .navegacion{
-    padding:2rem 2rem 0rem 0rem;
+    padding-top: 2rem;
 }
 .navegacion__enlace {
   display: block;
+ padding-top: 1rem;
   text-align: center;
   font-size: 1.8rem;
   color: var(--blanco);
 }
-
-.navegacion__enlace:hover {
-  color: #09bc8a;
-}
-
 .navegacion__enlace:last-of-type{
     padding-bottom: 2rem;
 }
@@ -196,6 +157,7 @@ img {
     padding-top: 5rem;
     grid-template-columns: 2fr 1fr;
     column-gap: 4rem;
+    text-align: left;
   }
   aside{
     margin-left: 5rem;
@@ -315,6 +277,44 @@ img {
 }
 /** Contacto **/
 
+/* Label Style Globals*/
+.cero{
+transition-delay:0ms;
+}
+.primero{
+transition-delay:50ms;
+}
+.segundo{
+transition-delay:100ms ;
+}
+.tercero{
+  transition-delay:150ms ;
+}
+.cuarto{
+  transition-delay:200ms ;
+}
+.quinto{
+  transition-delay:250ms ;
+}
+.sexto{
+  transition-delay:300ms ;
+}
+.septimo{
+  transition-delay:350ms ;
+}
+.octavo{
+  transition-delay:400ms ;
+}
+.noveno{
+  transition-delay:450ms ;
+}
+.decimo{
+  transition-delay:500ms ;
+}
+.onceavo{
+  transition-delay:550ms ;
+}
+
 /* Sección del Formulario*/
 .formulario {
  
@@ -327,6 +327,8 @@ img {
   box-shadow:#1d577e 10px 10px 0px 0px;
  
 }
+
+
 
 .formulario fieldset, .formulario-login fieldset {
   border: none;
@@ -517,3 +519,5 @@ img {
   color: var(--primario);
   box-shadow:#1d577e 10px 10px 0px 0px;
 }
+
+/* Fin del Login*/

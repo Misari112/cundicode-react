@@ -40,9 +40,7 @@ function Exercise() {
                 <div className="col">
                     <div className="card">
                         <div className="card-body">
-                            {user ? (
-                                <Editor solutionTemplate={exercise.SolutionTemplate} id={id} iduser={user.profile.sub}/>
-                            ) : (<></>)}
+                            <Editor solutionTemplate={exercise.SolutionTemplate} id={id}/>
                         </div>
                     </div>
                 </div>

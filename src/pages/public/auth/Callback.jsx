@@ -6,7 +6,7 @@ const Callback = () => {
     userManager.signinRedirectCallback().then(() => {
       console.log();
       // La autenticación ha sido exitosa, redirigir al usuario a la página de inicio
-      window.location.replace('/');
+      window.location.replace('/home');
     });
   }, []);
 

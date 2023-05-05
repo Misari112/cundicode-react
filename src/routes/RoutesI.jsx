@@ -11,6 +11,7 @@ import PrivateRoute from '../components/PrivateRouteI';
 import ExercisesPage from '../pages/public/exercises/ExercisesPage';
 import Exercise from '../pages/private/exercise/ExercisePage';
 import ProfilePage from '../pages/private/profile/ProfilePage';
+import SystemPage from '../pages/private/system/SystemPage';
 
 function RoutesI() {
   const [user, setUser] = useState('');
@@ -28,14 +29,8 @@ function RoutesI() {
         <Route path="/logout" element={<LogoutPage />} />
         <Route path="/callback" element={<Callback />} />
         <Route path='/exercises' element={<ExercisesPage />} />
-        <Route
-          path="//exercise/:id"
-          element={
-            <PrivateRoute isAuthenticated={user}>
-              <Exercise />
-            </PrivateRoute>
-          } 
-        />
+        <Route path='/home' element={<SystemPage />} />
+        <Route path='//exercise/:id' element={<Exercise />} />
         <Route
           path="/editor"
           element={

@@ -1,14 +1,14 @@
 import { UserManager } from 'oidc-client';
 
 const config = {
-  authority: 'https://cundicode-identity-server.azurewebsites.net',
-  client_id: 'interactive',
-  redirect_uri: 'https://cundicode-81412.web.app/callback',
-  client_secret: 'secret',
+  authority: process.env.REACT_APP_DIS_URL_BASE,
+  client_id: process.env.REACT_APP_CLIENT_ID,
+  redirect_uri: process.env.REACT_APP_F_URL_BASE + '/callback',
+  client_secret: process.env.REACT_APP_CLIENT_INTERACTIVE_SECRET,
   response_type: 'code',
-  scope: 'ms_general.read ms_practice.read ms_practice.write ms_learn.read openid profile email',
-  post_logout_redirect_uri: 'https://cundicode-81412.web.app/Home',
-  end_session_endpoint: 'https://cundicode-identity-server.azurewebsites.net/connect/endsession'
+  scope: process.env.REACT_APP_DIS_GRAPH_SCOPES,
+  post_logout_redirect_uri: process.env.REACT_APP_F_URL_BASE + '/Home',
+  end_session_endpoint: process.env.REACT_APP_DIS_URL_BASE + '/connect/endsession'
 };
 
 const userManager = new UserManager(config);

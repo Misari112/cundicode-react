@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+const urlBase = process.env.REACT_APP_MS_PRACTICE_URL_BASE;
 export function GetExercises() {
   const [exercises, setExercises] = useState([]);
 
   useEffect(() => {
     const fetchExercises = async () => {
-      const response = await axios.get('https://cundicode-ms-practice-api.azurewebsites.net/api/Codes');
+      const response = await axios.get(urlBase + '/Codes');
       setExercises(response.data);
     };
     fetchExercises();
@@ -20,7 +21,7 @@ export function GetExercise(id) {
 
   useEffect(() => {
     const fetchExercise = async () => {
-      const response = await axios.get('https://cundicode-ms-practice-api.azurewebsites.net/api/Codes/' + id);
+      const response = await axios.get(urlBase + '/Codes/' + id);
       const object = response.data;
       const examples = JSON.parse(object.Examples);
       object.Examples = examples;
@@ -35,7 +36,7 @@ export function GetExercise(id) {
 export function SetNewExercise(newExercise) {
   console.log("newExercise");
   console.log(newExercise);
-  axios.post("https://cundicode-ms-practice-api.azurewebsites.net/api/Codes/add", newExercise, {
+  axios.post(urlBase + "/Codes/add", newExercise, {
     headers: {
       'Content-Type': 'application/json'
     }
@@ -57,34 +58,11 @@ export async function CompileCustomCode(eCase) {
   const requestBody = {
     script: eCase.script,
     stdin: eCase.stdin,
-    language: "java",
-    version: "4"
+    language: eCase.language,
+    version: eCase.version
   };
-  return await axios.post('https://cundicode-ms-practice-api.azurewebsites.net/api/Codes', requestBody, {
-    headers: {
-      'accept': '*/*',
-      'Content-Type': 'application/json'
-    }
-  })
-    .then(response => {
-      console.log('La compilación fue:', response.data);
-      return response.data.output;
-    })
-    .catch(error => {
-      console.error('Hubo un error:', error);
-      return "Error en la compilación";
-    });
-}
-
-export async function CompileExamples(eCase) {
-  console.log("enviando servicio");
-  const requestBody = {
-    id: eCase.id,
-    script: eCase.script,
-    language: "java",
-    version: "4"
-  };
-  return await axios.post('https://cundicode-ms-practice-api.azurewebsites.net/api/Codes/ExecuteExamples', requestBody, {
+  console.log(requestBody)
+  return await axios.post(urlBase + '/Codes', requestBody, {
     headers: {
       'accept': '*/*',
       'Content-Type': 'application/json'
@@ -98,18 +76,45 @@ export async function CompileExamples(eCase) {
       console.error('Hubo un error:', error);
       return "Error en la compilación";
     });
+}
+
+export async function compileExamples(eCase) {
+  const { id, script, language, version } = eCase;
+
+  try {
+    console.log(`Enviando servicio: Id: ${id}, Lenguaje: ${language}, Versión: ${version}`);
+    
+    const requestBody = {
+      id,
+      script,
+      language,
+      version
+    };
+    
+    const response = await axios.post(urlBase + '/Codes/ExecuteExamples', requestBody, {
+      headers: {
+        'Accept': '*/*',
+        'Content-Type': 'application/json'
+      }
+    });
+    
+    console.log('La compilación fue:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Hubo un error:', error);
+    return "Error en la compilación";
+  }
 }
 
 export async function CompileTestCases(eCase) {
-  console.log("enviando servicio");
   const requestBody = {
     id: eCase.id,
     script: eCase.script,
-    language: "java",
-    version: "4",
-    idUser: eCase.iduser
+    language: eCase.language,
+    version: eCase.version,
+    idUser: eCase.idUser
   };
-  return await axios.post('https://localhost:7253/api/Codes/ExecuteTestCases', requestBody, {
+  return await axios.post(urlBase + '/Codes/ExecuteTestCases', requestBody, {
     headers: {
       'accept': '*/*',
       'Content-Type': 'application/json'
@@ -123,4 +128,22 @@ export async function CompileTestCases(eCase) {
       console.error('Hubo un error:', error);
       return "Error en la compilación";
     });
+}
+
+export async function getSolvedProblem(userId) {
+  const url = urlBase + '/Codes/solved/' + userId;
+  
+  try {
+    const response = await axios.get(url, {
+      headers: {
+        'Accept': '*/*'
+      }
+    });
+    
+    console.log('La respuesta fue:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Hubo un error:', error);
+    return "Error al obtener la información";
+  }
 }
