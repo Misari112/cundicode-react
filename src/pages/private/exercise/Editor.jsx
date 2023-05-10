@@ -97,19 +97,25 @@ function Editor(props) {
     };
 
     const handleTest_TestCases = async () => {
-        const eCase = {
-            id: id,
-            script: code,
-            language: language,
-            version: version,
-            idUser: user.profile.sub,
-        };
-        console.log(eCase);
-        alert("Enviando " + eCase.script);
         
-        const response = await CompileTestCases(eCase);
-        setTestCaseOutput(response);
-        console.log(response);
+        if(user){
+            const eCase = {
+                id: id,
+                script: code,
+                language: language,
+                version: version,
+                idUser: user.profile.sub,
+            };
+    
+            alert("Enviando " + eCase.script);
+        
+            const response = await CompileTestCases(eCase);
+            setTestCaseOutput(response);
+            console.log(response);
+        } else{
+            alert("Inicie sesión")
+        }
+
     };
 
     function handleExamplesVisibles() {
