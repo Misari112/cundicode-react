@@ -12,6 +12,9 @@ import ExercisesPage from '../pages/public/exercises/ExercisesPage';
 import Exercise from '../pages/private/exercise/ExercisePage';
 import ProfilePage from '../pages/private/profile/ProfilePage';
 import SystemPage from '../pages/private/system/SystemPage';
+import ResourcesPage from '../pages/public/resources/ResourcesPage';
+import NewResource from '../pages/private/admin/newResource/NewResource';
+import ResourcePage from '../pages/public/resources/ResourcePage';
 
 function RoutesI() {
   const [user, setUser] = useState('');
@@ -29,8 +32,11 @@ function RoutesI() {
         <Route path="/logout" element={<LogoutPage />} />
         <Route path="/callback" element={<Callback />} />
         <Route path='/exercises' element={<ExercisesPage />} />
+        <Route path='/resources' element={<ResourcesPage />} />
         <Route path='/home' element={<SystemPage />} />
-        <Route path='//exercise/:id' element={<Exercise />} />
+        <Route path='/newResource' element={<NewResource />} />
+        <Route path='/exercise/:id' element={<Exercise />} />
+        <Route path='/resource/:id' element={<ResourcePage />} />
         <Route
           path="/editor"
           element={

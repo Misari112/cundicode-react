@@ -1,34 +1,74 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { SetNewResource } from "../../../../services/ResourcesService";
+import { getAuthenticatedUser } from "../../../../config/ConfigIdentity";
+
 function NewResource() {
+    const [user, setUser] = useState('');
     const [content, setContent] = useState('');
-    const [formattedContent, setFormattedContent] = useState('');
-    const handleEditorChange = (value) => {
+    const [resourceData, setResourceData] = useState({
+        Title: "",
+        Content: "",
+        IdUser: "",
+        Summary: ""
+    });
+    useEffect(() => {
+        async function getUser() {
+            const user = await getAuthenticatedUser();
+            setUser(user);
+            resourceData.IdUser = user.profile.sub;
+        }
+        getUser();
+    }, []);
+
+    if(!user){
+        return (<>
+            <p>????</p>
+        </>)
+    }
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setResourceData((prevExerciseData) => ({ ...prevExerciseData, [name]: value }));
+    };
+
+    const handleContent = (value) => {
         setContent(value);
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        resourceData.Content = content;
+        SetNewResource(resourceData);
     };
-    const handleSave = () => {
-        setFormattedContent(document.querySelector('.ql-editor').innerHTML);
-        // hacer algo con el contenido formateado...
-    };
-    const divStyle = {
-        width: '50rem',
-      };
+
     return (
         <Fragment>
-            <div className="container d-flex justify-content-center align-items-center">
-                <img src="https://cdn.discordapp.com/attachments/1010361546100178954/1100963660916080760/6201803e9abd9.png" alt="My Image" width="200" height="200" />
-                <h1>Coming soon</h1>
+            <div className="mb-3">
+                <label htmlFor="title" className="form-label">Title:</label>
+                <input
+                    className="form-control"
+                    type="text"
+                    id="title"
+                    name="Title"
+                    value={resourceData.Title}
+                    onChange={handleChange}
+                />
             </div>
-            <ReactQuill value={content} onChange={handleEditorChange} />
-            <button onClick={handleSave}>Guardar contenido formateado</button>
-            <div className="card" style={divStyle}>
-                <div className="card-body">
-                <div dangerouslySetInnerHTML={{ __html: content }}></div>
-                </div>
+            <div className="mb-3">
+                <label htmlFor="summary" className="form-label">Summary:</label>
+                <input
+                    className="form-control"
+                    type="text"
+                    id="summary"
+                    name="Summary"
+                    value={resourceData.Summary}
+                    onChange={handleChange}
+                />
             </div>
-            
-            <pre>{JSON.stringify(formattedContent, null, 2)}</pre>
+            <ReactQuill value={content} onChange={handleContent} />
+            <button className="btn btn-primary mt-3" onClick={handleSubmit}>Agregar</button>
         </Fragment>
     );
 }

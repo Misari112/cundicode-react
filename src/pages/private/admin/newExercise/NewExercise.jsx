@@ -80,6 +80,7 @@ function NewExercise() {
     };
 
     return (
+
         <Fragment>
             <div className="row row-cols-1 row-cols-md-2 g-4">
                 <div className="col">
@@ -114,146 +115,148 @@ function NewExercise() {
                 <div className="col">
                     <div className="card">
                         <div className="card-body">
-                            <label>
+                            <div className="mb-3">
+                                <label htmlFor="title" className="form-label">Title:</label>
                                 <input
+                                    className="form-control"
                                     type="text"
+                                    id="title"
                                     name="Title"
                                     value={exerciseData.Title}
                                     onChange={handleChange}
                                 />
-                            </label>
-                            <br />
+                            </div>
                             <ReactQuill value={exerciseData.Description} onChange={handleDescriptionChange} />
-                            <br />
-                            <label>
-                                Categories:
+                            <div className="mb-3">
+                                <label htmlFor="categories" className="form-label">Categories:</label>
                                 <input
+                                    className="form-control"
                                     type="text"
+                                    id="categories"
                                     name="Categories"
                                     value={exerciseData.Categories}
                                     onChange={handleChange}
                                 />
-                            </label>
-                            <br />
-                            <label>
-                                Level:
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="difficultyLevel" className="form-label">Level:</label>
                                 <input
+                                    className="form-control"
                                     type="text"
+                                    id="difficultyLevel"
                                     name="DifficultyLevel"
                                     value={exerciseData.DifficultyLevel}
                                     onChange={handleChange}
                                 />
-                            </label>
-                            <br />
-                            <label>
-                                Time Limit:
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="timeLimit" className="form-label">Time Limit:</label>
                                 <input
+                                    className="form-control"
                                     type="text"
+                                    id="timeLimit"
                                     name="TimeLimit"
                                     value={exerciseData.TimeLimit}
                                     onChange={handleChange}
                                 />
-                            </label>
-                            <br />
-                            <label>
-                                Memory Limit:
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="memoryLimit" className="form-label">Memory Limit:</label>
                                 <input
+                                    className="form-control"
                                     type="text"
+                                    id="memoryLimit"
                                     name="MemoryLimit"
                                     value={exerciseData.MemoryLimit}
                                     onChange={handleChange}
                                 />
-                            </label>
-                            <br />
-                            <label>
-                                Function Signature:
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="functionSignature" className="form-label">Function Signature:</label>
                                 <input
+                                    className="form-control"
                                     type="text"
+                                    id="functionSignature"
                                     name="FunctionSignature"
                                     value={exerciseData.FunctionSignature}
                                     onChange={handleChange}
                                 />
-                            </label>
-                            <br />
-                            <label>
-                                Solution Template:
-                                <AceEditor
-                                    id="code"
-                                    value={exerciseData.SolutionTemplate}
-                                    mode="java"
-                                    theme="monokai"
-                                    name="SolutionTemplate"
-                                    editorProps={{ $blockScrolling: true }}
-                                    onChange={handleChangeSolutionTemplate}
-                                />
-                            </label>
-                            <br />
-                            <label>
-                                Hints:
+                            </div>
+                            <label htmlFor="solutionTemplate">Solution Template:</label>
+                            <AceEditor
+                                id="code"
+                                value={exerciseData.SolutionTemplate}
+                                mode="java"
+                                theme="monokai"
+                                name="SolutionTemplate"
+                                editorProps={{ $blockScrolling: true }}
+                                onChange={handleChangeSolutionTemplate}
+                            />
+                            <div className="mb-3">
+                                <label htmlFor="hints" className="form-label">Hints:</label>
                                 <input
+                                    className="form-control"
                                     type="text"
+                                    id="hints"
                                     name="Hints"
                                     value={exerciseData.Hints}
                                     onChange={handleChange}
                                 />
-                            </label>
-                            <br />
+                            </div>
                         </div>
-                        <br />
-                        <div className="container-fluid w-50 bg-secondary">
-                            <h2>Ejemplos</h2>
+                        <div className="container-fluid w-50 bg-secondary p-3 my-3 rounded">
+                            <h2 className="mb-3">Ejemplos</h2>
                             <form onSubmit={handleExample}>
-                                <label>
-                                    Input:
+                                <div className="mb-3">
+                                    <label htmlFor="inputExample" className="form-label">Input:</label>
                                     <textarea
-                                        type="text"
+                                        className="form-control"
+                                        id="inputExample"
                                         name="input"
                                         value={example.input}
                                         onChange={handleChangeExample}
                                     />
-                                </label>
-                                <br />
-                                <label>
-                                    Output:
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="outputExample" className="form-label">Output:</label>
                                     <textarea
-                                        type="text"
+                                        className="form-control"
+                                        id="outputExample"
                                         name="output"
                                         value={example.output}
                                         onChange={handleChangeExample}
                                     />
-                                </label>
-                                <button type="submit">Agregar ejemplo</button>
+                                </div>
+                                <button type="submit" className="btn btn-primary">Agregar ejemplo</button>
                             </form>
-
-                            <br />
                         </div>
-                        <div className="container-fluid w-50 bg-secondary">
-                            <h2>Test Cases</h2>
+                        <div className="container-fluid w-50 bg-secondary p-3 my-3 rounded">
+                            <h2 className="mb-3">Test Cases</h2>
                             <form onSubmit={handleTestCase}>
-                                <label>
-                                    Input:
+                                <div className="mb-3">
+                                    <label htmlFor="inputTestCase" className="form-label">Input:</label>
                                     <textarea
-                                        type="text"
+                                        className="form-control"
+                                        id="inputTestCase"
                                         name="input"
                                         value={testCase.input}
                                         onChange={handleChangeTestCase}
                                     />
-                                </label>
-                                <br />
-                                <label>
-                                    Output:
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="outputTestCase" className="form-label">Output:</label>
                                     <textarea
-                                        type="text"
+                                        className="form-control"
+                                        id="outputTestCase"
                                         name="output"
                                         value={testCase.output}
                                         onChange={handleChangeTestCase}
                                     />
-                                </label>
-                                <button type="submit">Agregar test case</button>
+                                </div>
+                                <button type="submit" className="btn btn-primary">Agregar test case</button>
                             </form>
-
-                            <br />
                         </div>
+
                     </div>
                 </div>
             </div>

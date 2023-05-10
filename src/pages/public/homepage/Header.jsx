@@ -14,9 +14,9 @@ function Header() {
                             </h1>
                         </Link>
                         <nav className="navegacion">
-                            <Link to="/HomePage" className="navegacion__enlace">Nosotros</Link>
-                            <Link to="/conceptpage/conceptpage" className="navegacion__enlace">Conceptos</Link>
-                            <Link to="/contact/Contactpage" className="navegacion__enlace">Contacto</Link>
+                            <Link to="/" className="navegacion__enlace">Nosotros</Link>
+                            <Link to="/resources" className="navegacion__enlace">Conceptos</Link>
+                            <Link to="/" className="navegacion__enlace">Contacto</Link>
                             <LoginButton/>
                         </nav>
                     </div>
